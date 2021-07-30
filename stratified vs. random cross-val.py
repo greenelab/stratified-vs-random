@@ -74,7 +74,7 @@ def get_noise_accuracy(noise_iterable,x_values,cut_off):
 
 
 # Creating a list that will be used for the different cutoffs in labeling.
-cut_off_list = [0.01,0.25,0.5,0.75,0.99]
+cut_off_list = [0.01, 0.25, 0.5, 0.75, 0.99]
 
 
 # Looping through cutoffs and graphing each model at each labeling breakpoint
