@@ -70,7 +70,7 @@ def get_noise_accuracy(noise_list,x_values,cut_off):
         standard_deviation = np.std(accuracy_scores)
         standard_deviations.append(standard_deviation)
         
-    return noise_list,mean_acc_scores,standard_deviations
+    return noise_list, mean_acc_scores, standard_deviations
 
 
 # Creating a list that will be used for the different cutoffs in labeling.
