@@ -22,7 +22,7 @@ def logistic(x, b, noise=None):
 
 # Function that sumulates logistic data, trains and validates model on the data.
 
-def get_noise_accuracy(noise_iterable,x_values,cut_off):
+def get_noise_accuracy(noise_list,x_values,cut_off):
     """Returns the noise iterable, the list of accuracy scores, and the list of standard deviations for error bars."""
     bias = np.ones(len(x_values))
     X = np.vstack([x_values,bias]) # Add Intercept
@@ -30,7 +30,7 @@ def get_noise_accuracy(noise_iterable,x_values,cut_off):
     
     mean_acc_scores = []
     standard_deviations = []
-    noise_list = noise_iterable # Different noise values to be used in gaussian distribution sampling.
+
     for i in noise_list:
         # Creating simulated logistic data set with several noise values
         pnoisy = logistic(X, B, noise=np.random.normal(loc=0., scale= i, size=len(x_values)))
