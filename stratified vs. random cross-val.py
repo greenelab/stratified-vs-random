@@ -20,7 +20,7 @@ def logistic(x, b, noise=None):
         L = L+noise
     return 1/(1+np.exp(-L))
 
-# Function that sumulates logistic data, trains and validates model on the data.
+# Function that simulates logistic data, trains and validates model on the data.
 
 def get_noise_accuracy(noise_list,x_values,cut_off):
     """Returns the noise iterable, the list of accuracy scores, and the list of standard deviations for error bars."""
@@ -80,7 +80,7 @@ cut_off_list = [0.01, 0.25, 0.5, 0.75, 0.99]
 # Looping through cutoffs and graphing each model at each labeling breakpoint
 for i in cut_off_list:
     noise, accuracy, errorbars = get_noise_accuracy(np.arange(0,100,5), np.arange(-10,10,0.01), i)
-    plt.errorbar(noise, accuracy, yerr = errorbars,label = str(i))
+    plt.errorbar(noise, accuracy, yerr = errorbars, label = str(i))
     plt.title('Noise vs. Accuracy')
     plt.xlabel('Noise')
     plt.ylabel('Accuracy')
