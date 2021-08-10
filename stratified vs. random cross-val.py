@@ -23,7 +23,7 @@ def logistic(x, b, noise=None):
 # Model fitting parameters used in get_noise_accuracy
 MAX_ITER = 1000
 N_SPLITS = 5
-
+SEED = 1
 # Function that simulates logistic data, trains and validates model on the data.
 def get_noise_accuracy(noise_list,x_values,cut_off):
     """Returns the noise iterable, the list of accuracy scores, and the list of standard deviations for error bars."""
@@ -39,8 +39,8 @@ def get_noise_accuracy(noise_list,x_values,cut_off):
         pnoisy = logistic(X, B, noise=np.random.normal(loc=0., scale= i, size=len(x_values)))
         
         # Reshaping data for model    
-        x_data = x_values.reshape(len(x_values),1)
-        pnoisy_data = pnoisy.reshape(len(x_values),1)
+        x_data = x_values.reshape(len(x_values), 1)
+        pnoisy_data = pnoisy.reshape(len(x_values), 1)
         transformed_p = [] # Empty list to hold new transformed data (1's and 0's)
         for a in pnoisy_data:    
             if a >= cut_off: # Turning values > 0.5 in 1's and < 0.5 into 0's
@@ -55,7 +55,7 @@ def get_noise_accuracy(noise_list,x_values,cut_off):
         LogReg = LogisticRegression(max_iter= MAX_ITER)
         
         # StratifiedKFold Splits
-        skf = StratifiedKFold(n_splits = N_SPLITS)
+        skf = StratifiedKFold(n_splits = N_SPLITS, random_state= SEED, shuffle = True)
         # kf = KFold(n_splits = 5)
         accuracy_scores = [] # Empty accuracy score list to be filled with each iteration of kfold
         for train_index, test_index in skf.split(x_data,transformed_p):
